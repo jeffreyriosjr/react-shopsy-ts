@@ -1,11 +1,9 @@
+import { Link } from 'react-router-dom';
+
 const Navbar = () => {
-    return <div id='navbar'>
-        <div className="row text-center">
-            <div className="col">
-                <h2>Navbar Page!</h2>
-            </div>
-        </div>
-    </div>
+    return (
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark"></nav>
+    )
 }
 
 export default Navbar;
