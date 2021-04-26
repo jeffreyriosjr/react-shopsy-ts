@@ -12,6 +12,7 @@ const HomePage = () => {
       let prods = await (
         await fetch('https://fakestoreapi.com/products')
       ).json();
+      // console.log(prods)
 
       setProducts(prods);
     } catch (e) {
@@ -24,6 +25,17 @@ const HomePage = () => {
         <div className='col'>
           <h2>Home Page!</h2>
         </div>
+      </div>
+      <div className="row">
+        <ul className="list-group">
+          {products.map((product, index) => {
+            return (
+              <li className="list-group-item" key={index}>
+              {product.title}
+              </li>
+            )
+          })}
+        </ul>
       </div>
     </div>
   );
