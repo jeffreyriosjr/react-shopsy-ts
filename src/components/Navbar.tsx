@@ -1,12 +1,14 @@
+import {useContext} from 'react';
 import { Link } from 'react-router-dom';
+import {GlobalContext} from '../context/GlobalContext';
 
 const Navbar = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
       {/* Logo */}
       <Link to='/' className='navbar-brand'>
-        Shopsy
-      </Link>
+          Shopsy      
+        </Link>
 
       {/* Menu */}
       <div className='collapse navbar-collapse'>
