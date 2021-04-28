@@ -8,9 +8,10 @@ const App =() => {
     <Router>
       <GlobalProvider>
         <AppRoutes />
+        
       </GlobalProvider>
     </Router>
   );
-}
+};
 
 export default App;

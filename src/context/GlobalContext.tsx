@@ -15,7 +15,7 @@ const initialState = {
  - will look to update our state based on the desired action
  - will return our updated state
 */
-const appReducer = (state:any, action:any) => {
+const appReducer = (state: any, action:any) => {
     
     switch (action.type) {
         case 'GET_PRODUCTS':
@@ -39,7 +39,6 @@ export const GlobalProvider: React.FC = ({children}) => {
             ).json();
             
             dispatch({ type:'GET_PRODUCTS', payload: prods });
-
             } catch(e) {
             console.log(e);
         }
@@ -47,7 +46,11 @@ export const GlobalProvider: React.FC = ({children}) => {
 
     return (
         <GlobalContext.Provider
-         value={{ products: state.products, cart: state.cart, getProducts }}>
+         value={{ 
+             products: state.products, 
+             cart: state.cart,
+             getProducts,
+             }}>
             {children}
         </GlobalContext.Provider>
     );

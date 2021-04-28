@@ -21,5 +21,6 @@ type Product = {
 // Define a state type
 type InitialStateType = {
     products: Product[];
+    cart: Product[];
     getProducts: () => void;
 };
