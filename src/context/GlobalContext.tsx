@@ -1,4 +1,5 @@
 import React, {createContext, useState, useReducer } from 'react';
+import instance from '../api/apiConfig';
 
 // Initialized a default state for our app
 const initialState = {
@@ -34,13 +35,10 @@ export const GlobalProvider: React.FC = ({children}) => {
 
     const getProducts = async () => {
         try {
-            let prods = await (
-                await fetch('https://fakestoreapi.com/products')
-            ).json();
-            
-            dispatch({ type:'GET_PRODUCTS', payload: prods });
+            let { data } = await instance.get('/products');
+            dispatch({ type:'GET_PRODUCTS', payload: data });
             } catch(e) {
-            console.log(e);
+                console.log(e);
         }
     };
 
