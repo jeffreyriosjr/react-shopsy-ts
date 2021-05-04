@@ -10,13 +10,13 @@ const ProductCard: React.FC<CardProps> = ({ product }) => {
 
             return (
              <div className="card h-100 product-card-hover justify-content-between flex-column d-flex">
-                    
                     <span 
                     className='' 
                     onClick={() => history.push(`/products/${product.id}`)}>
                         {/* img-on-top */}
                     <div className="sh-card-img">
-                        <div className="sh-bg-img" 
+                        <div 
+                        className="sh-bg-img" 
                         style={{ backgroundImage: `url(${product.image})` }}></div>
                     </div>
 
