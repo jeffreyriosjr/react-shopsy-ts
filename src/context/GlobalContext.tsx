@@ -17,6 +17,9 @@ const initialState = {
  - will recieve an action declaration
  - will look to update our state based on the desired action
  - will return our updated state
+ - our reducer takes two parameters.
+    - the first is our initialstate so that we can update it accordingly
+    - the second param is the action object that gets passed into dispatch({type:'some_action', payload: some data})
 */
 const appReducer = (state: any, action:any) => {
     
