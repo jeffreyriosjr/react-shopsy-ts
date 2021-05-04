@@ -5,7 +5,9 @@ import instance from '../api/apiConfig';
 const initialState = {
     products: [],
     cart: [],
+    product: undefined,
     getProducts: () => {},
+    getSingleProduct: () => {},
 };
 
 // Create our Global reducer
@@ -20,8 +22,12 @@ const appReducer = (state: any, action:any) => {
     
     switch (action.type) {
         case 'GET_PRODUCTS':
+            // when a case matches, the return will update the state for us
             return {...state, products: action.payload };
-        default:
+            case 'GET_SINGLE_PRODUCT':
+                // When a case matches, bind the payload to the product property in state
+                return{...state, product: action.payload };
+           default:
             return state;
     }
 };
@@ -33,6 +39,7 @@ export const GlobalContext = createContext<InitialStateType>(initialState);
 export const GlobalProvider: React.FC = ({children}) => {
     const [state, dispatch] = useReducer(appReducer, initialState);
 
+    // Actions = methods that run task for our app
     const getProducts = async () => {
         try {
             let { data } = await instance.get('/products');
@@ -42,12 +49,25 @@ export const GlobalProvider: React.FC = ({children}) => {
         }
     };
 
+    const getSingleProduct = async (productId:number) => {
+        try {
+            let {data} = await instance.get(`/products/${productId}`)
+            console.log(data);
+            dispatch({type:'GET_SINGLE_PRODUCT', payload: data})
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+
     return (
         <GlobalContext.Provider
          value={{ 
              products: state.products, 
              cart: state.cart,
+             product: state.product,
              getProducts,
+             getSingleProduct,
              }}>
             {children}
         </GlobalContext.Provider>
