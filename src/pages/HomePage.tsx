@@ -1,18 +1,17 @@
 import { useEffect, useContext } from 'react';
+import ProductCard from '../components/ProductCard';
 import {GlobalContext} from '../context/GlobalContext';
-import {Link} from 'react-router-dom';
 import '../App.css';
+
 const HomePage = () => {
-  const { products, getProducts} = useContext(
-    GlobalContext
-    );
+  const { products, getProducts} = useContext(GlobalContext);
 
   useEffect(() => {
     getProducts();
   }, []);
 
   return (
-    <div className='container'>
+    
     <div id='home'>
       <div className='row text-center'>
         <div className='col'>
@@ -21,42 +20,17 @@ const HomePage = () => {
         </div>
       </div>
       <div className="row">
-       
-            {products.map((product, i) => {
+        {products.map((product, i) => {
               return (
                 <div className="col-sm-12 col-md-3 mb-3" key={i}>
-                  <div className="card h-100 d-flex justify-content-around">
-                    {/* img-on-top */}
-                    <div className="sh-card-img">
-                        <div className="sh-bg-img" style={{backgroundImage: `url(${product.image})`}}>
-                        </div>
-                    <div className="card-body">
-                      <h5 className="card-title">
-                        <Link to={`/products/${product.id}`}>{product.title}</Link></h5>
-                      <div className='d-flex justify-content-between align-items-center'>
-                        <strong>${product.price}</strong>
-                        <span className="badge badge-warning">
-                          {product.category}
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="card-footer">
-                      <button className="btn btn-block btn-primary">
-                        Add to Cart
-                      </button>
-                    </div>
-
-                    </div>
-                  </div>
-                </div>
+                 <ProductCard product={product} />
+                 </div>
               );
             })}
-        
+        </div>
       </div>
-    </div>
-    </div>
   );
 };
+
 
 export default HomePage;
