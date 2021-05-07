@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { GlobalContext } from '../context/GlobalContext';
 
 interface CardProps {
     product: Product;
@@ -36,7 +37,7 @@ const ProductCard: React.FC<CardProps> = ({ product }) => {
 
                     {/* {Card Footer} */}
                     <div className="card-footer">
-                      <button className="btn btn-block btn-primary">Add to Cart</button>
+                      <button className="btn btn-block btn-primary" >Add to Cart</button>
                     </div>
                     </div>      
     );
