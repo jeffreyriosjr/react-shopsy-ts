@@ -1,14 +1,15 @@
-import {useContext} from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import {GlobalContext} from '../context/GlobalContext';
+import { GlobalContext } from '../context/GlobalContext';
 
 const Navbar = () => {
+  const { cart } = useContext(GlobalContext);
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
       {/* Logo */}
       <Link to='/' className='navbar-brand'>
-          Shopsy      
-        </Link>
+        Shopsy
+      </Link>
 
       {/* Menu */}
       <div className='collapse navbar-collapse'>
@@ -23,7 +24,7 @@ const Navbar = () => {
       <div className='sh-cart-icon'>
         <div className='navbar-nav'>
           <Link to='/cart' className='nav-link'>
-            Cart
+            Cart ({cart.length})
           </Link>
         </div>
       </div>
