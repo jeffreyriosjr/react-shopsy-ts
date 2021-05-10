@@ -28,7 +28,7 @@ const appReducer = (state: any, action:any) => {
     switch (action.type) {
         case 'GET_PRODUCTS':
             // when a case matches, the return will update the state for us
-            return {...state, products: action.payload };
+            return {...state, products: action.payload, is_loading: false };
             case 'GET_SINGLE_PRODUCT':
                 // When a case matches, bind the payload to the product property in state
                 return{...state, product: action.payload, is_loading: false };
@@ -51,6 +51,7 @@ export const GlobalProvider: React.FC = ({children}) => {
 
     // Actions = methods that run task for our app
     const getProducts = async () => {
+        dispatch({type: 'SET_LOADING', payload: true});
         try {
             let { data } = await instance.get('/products');
             dispatch({ type:'GET_PRODUCTS', payload: data });
