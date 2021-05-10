@@ -69,8 +69,7 @@ export const GlobalProvider: React.FC = ({children}) => {
 
     const addToCart = (product:Product) => {
         // receive a product that we can then move into our cart array
-        dispatch({type: "ADD_TO_CART", payload: product })
-
+        dispatch({type: "ADD_TO_CART", payload: product });
     };
 
     return (
@@ -81,7 +80,7 @@ export const GlobalProvider: React.FC = ({children}) => {
              product: state.product,
              getProducts,
              getSingleProduct,
-             addToCart
+             addToCart,
              }}>
             {children}
         </GlobalContext.Provider>
