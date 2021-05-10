@@ -6,6 +6,7 @@ const initialState = {
     products: [],
     cart: [],
     product: undefined,
+    is_loading: false,
     getProducts: () => {},
     getSingleProduct: () => {},
     addToCart: () => {}, 
@@ -30,10 +31,12 @@ const appReducer = (state: any, action:any) => {
             return {...state, products: action.payload };
             case 'GET_SINGLE_PRODUCT':
                 // When a case matches, bind the payload to the product property in state
-                return{...state, product: action.payload };
+                return{...state, product: action.payload, is_loading: false };
                 case "ADD_TO_CART":
                     console.log('what is payload?', action.payload)
                     return{...state, cart: [...state.cart, action.payload] };
+                case 'SET_LOADING':
+                    return {...state, is_loading: action.payload};
            default:
             return state;
     }
@@ -57,10 +60,11 @@ export const GlobalProvider: React.FC = ({children}) => {
     };
 
     const getSingleProduct = async (productId:number) => {
+        dispatch({type: 'SET_LOADING', payload: true });
         try {
-            let {data} = await instance.get(`/products/${productId}`)
+            let {data} = await instance.get(`/products/${productId}`);
             console.log(data);
-            dispatch({type:'GET_SINGLE_PRODUCT', payload: data})
+            dispatch({ type:'GET_SINGLE_PRODUCT', payload: data })
         } catch (e) {
             console.log(e);
         }
@@ -77,6 +81,7 @@ export const GlobalProvider: React.FC = ({children}) => {
              products: state.products, 
              cart: state.cart,
              product: state.product,
+             is_loading: state.is_loading,
              getProducts,
              getSingleProduct,
              addToCart,
