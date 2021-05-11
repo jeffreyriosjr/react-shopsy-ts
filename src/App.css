@@ -17,3 +17,13 @@
     background-repeat: no-repeat;
     height: 400px;
 }
+
+/* Cart Item Styles */
+.cart-item-img-container {
+    height: 100px;
+  }
+  
+  .cart-item-img-container img {
+    height: 100%;
+  }
+  

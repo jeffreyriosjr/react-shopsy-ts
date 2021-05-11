@@ -10,11 +10,24 @@ image:'...'
 */ 
 
 type Product = {
+    product: Product;
     id: number;
     title: string;
+    quantity: number;
     price: string;
     category: string;
     description: string;
+    image: string;
+}
+
+// class Product {
+//     constructor(id, title, price, category, description, image {})
+// }
+
+type CartItem = {
+    id: number;
+    quantity: number;
+    product: Product;
     image: string;
 }
 
@@ -28,3 +41,4 @@ type InitialStateType = {
     getSingleProduct: (productId:number) => void;
     addToCart: (product:Product) => void;
 };
+
